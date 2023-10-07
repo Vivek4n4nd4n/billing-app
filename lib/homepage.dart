@@ -8,6 +8,9 @@ class JewelryShopHomePage extends StatefulWidget {
 }
 
 class _JewelryShopHomePageState extends State<JewelryShopHomePage> {
+
+
+  
   TextEditingController gramController = TextEditingController();
   TextEditingController costPerGramController = TextEditingController();
   TextEditingController newMetalController = TextEditingController();

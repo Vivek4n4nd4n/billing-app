@@ -9,8 +9,11 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pdfWidgets;
 import 'package:printing/printing.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+    sqfliteFfiInit();
+
   runApp(const JewelryShopApp());
 }
 

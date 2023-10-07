@@ -83,11 +83,11 @@ class _CartPageState extends State<CartPage> {
                 ),
               );
             },
-            child: const Text("Preview Invoice"),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Colors.green,
             ),
+            child: const Text("Preview Invoice"),
           ),
         ],
       ),
@@ -106,7 +106,7 @@ class _CartPageState extends State<CartPage> {
                     onPressed: () {
                       _showEditDialog(item, index);
                     },
-                    icon: Icon(Icons.edit)),
+                    icon: const Icon(Icons.edit)),
                 IconButton(
                   onPressed: () {
                     showDialog(
@@ -118,7 +118,7 @@ class _CartPageState extends State<CartPage> {
                               'Are you sure you want to delete this item?'),
                           actions: <Widget>[
                             TextButton(
-                              child: Text('Cancel'),
+                              child: const Text('Cancel'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -317,20 +317,20 @@ pdfWidgets.Document generateCartInvoice(List<Map<String, dynamic>> cart) {
 
   pdf.addPage(
     pdfWidgets.Page(
-      pageFormat: PdfPageFormat.roll80,
+      pageFormat: PdfPageFormat.roll57,
       build: (pdfWidgets.Context context) => pdfWidgets.Padding(
-        padding: const pdfWidgets.EdgeInsets.all(8),
+        padding: const pdfWidgets.EdgeInsets.all(5),
         child: pdfWidgets.Column(
           crossAxisAlignment: pdfWidgets.CrossAxisAlignment.start,
           children: [
             pdfWidgets.Center(
               child: pdfWidgets.Text('Star Jewellery',
                   style: pdfWidgets.TextStyle(
-                      fontSize: 16, fontWeight: pdfWidgets.FontWeight.bold)),
+                      fontSize: 12, fontWeight: pdfWidgets.FontWeight.bold)),
             ),
             pdfWidgets.SizedBox(height: 10),
             pdfWidgets.Text('Invoice Date: $formattedDate',
-                style: pdfWidgets.TextStyle(fontSize: 12)),
+                style: pdfWidgets.TextStyle(fontSize: 10)),
             pdfWidgets.SizedBox(height: 10),
             pdfWidgets.Divider(),
             pdfWidgets.SizedBox(height: 10),
@@ -340,12 +340,13 @@ pdfWidgets.Document generateCartInvoice(List<Map<String, dynamic>> cart) {
               return pdfWidgets.Padding(
                 padding: const pdfWidgets.EdgeInsets.only(bottom: 10),
                 child: pdfWidgets.Column(
-                  crossAxisAlignment: pdfWidgets.CrossAxisAlignment.start,
+                  crossAxisAlignment: pdfWidgets.CrossAxisAlignment.center,
                   children: [
                     pdfWidgets.Text('Item #${index + 1}',
                         style: pdfWidgets.TextStyle(
-                            fontSize: 12,
+                            fontSize: 10,
                             fontWeight: pdfWidgets.FontWeight.bold)),
+
                     buildRow('Metal', item['metal'] ?? ''),
                     buildRow('Item', item['item'] ?? ''),
                     buildRow('Gram', '${item['gram'].toStringAsFixed(2)}'),
@@ -384,16 +385,17 @@ pdfWidgets.Document generateCartInvoice(List<Map<String, dynamic>> cart) {
 pdfWidgets.Row buildRow(String label, String value, {bool isBold = false}) {
   return pdfWidgets.Row(
     mainAxisAlignment: pdfWidgets.MainAxisAlignment.spaceBetween,
+    
     children: [
       pdfWidgets.Text('$label:',
           style: pdfWidgets.TextStyle(
-              fontSize: 10,
+              fontSize: 8,
               fontWeight: isBold
                   ? pdfWidgets.FontWeight.bold
                   : pdfWidgets.FontWeight.normal)),
       pdfWidgets.Text(value,
           style: pdfWidgets.TextStyle(
-              fontSize: 10,
+              fontSize: 8,
               fontWeight: isBold
                   ? pdfWidgets.FontWeight.bold
                   : pdfWidgets.FontWeight.normal)),
